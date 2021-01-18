@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 16, 2021 at 11:48 PM
+-- Generation Time: Jan 17, 2021 at 10:14 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.4.13
 
@@ -254,6 +254,27 @@ CREATE TABLE `products_offers` (
 -- --------------------------------------------------------
 
 --
+-- Stand-in structure for view `product_rating`
+-- (See below for the actual view)
+--
+CREATE TABLE `product_rating` (
+`id` int(10) unsigned
+,`name` varchar(64)
+,`price` float(8,2)
+,`details` text
+,`photo` varchar(255)
+,`brand_id` int(10) unsigned
+,`subcate_id` int(10) unsigned
+,`supplier_id` int(10) unsigned
+,`created_at` timestamp
+,`updated_at` timestamp
+,`rating_count` bigint(21)
+,`rating_avg` decimal(11,0)
+);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `rating`
 --
 
@@ -383,7 +404,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `phone`, `email`, `password`, `photo`, `status`, `code`, `uploaded_at`, `created_at`, `gender`) VALUES
-(10, 'Shaimaa Elbanan', '01022173248', 'shaimaaelbanan202@gmail.com', '84bbf4492b7b632de62ba496d', '1610821096.jpg', 1, 56405, '2021-01-16 18:18:16', '2021-01-14 19:18:18', 'f');
+(10, 'Shaimaa Elbanan', '01022173248', 'shaimaaelbanan202@gmail.com', '84bbf4492b7b632de62ba496d', '1610821096.jpg', 1, 99316, '2021-01-17 21:10:22', '2021-01-14 19:18:18', 'f');
 
 -- --------------------------------------------------------
 
@@ -395,6 +416,15 @@ CREATE TABLE `users_products` (
   `user_id` int(10) UNSIGNED NOT NULL,
   `product_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `product_rating`
+--
+DROP TABLE IF EXISTS `product_rating`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `product_rating`  AS SELECT `products`.`id` AS `id`, `products`.`name` AS `name`, `products`.`price` AS `price`, `products`.`details` AS `details`, `products`.`photo` AS `photo`, `products`.`brand_id` AS `brand_id`, `products`.`subcate_id` AS `subcate_id`, `products`.`supplier_id` AS `supplier_id`, `products`.`created_at` AS `created_at`, `products`.`updated_at` AS `updated_at`, count(`rating`.`product_id`) AS `rating_count`, if(round(avg(`rating`.`value`),0) is null,0,round(avg(`rating`.`value`),0)) AS `rating_avg` FROM (`products` left join `rating` on(`products`.`id` = `rating`.`product_id`)) GROUP BY `products`.`id` ORDER BY if(round(avg(`rating`.`value`),0) is null,0,round(avg(`rating`.`value`),0)) DESC, count(`rating`.`product_id`) DESC ;
 
 --
 -- Indexes for dumped tables

@@ -10,7 +10,7 @@
                                 </div>
                                 <div class="footer-content">
                                     <ul>
-                                        <li><a href="my-account.php">My Account</a></li>
+                                        <li><a href="profile.php">My Account</a></li>
                                         <li><a href="about-us.php">Order History</a></li>
                                         <li><a href="wishlist.php">WishList</a></li>
                                         <li><a href="#">Newsletter</a></li>

@@ -227,6 +227,7 @@ if (isset($_GET['pro'])) {
         </div>
     </div>
 </div>
+<!-- Related Products Area Start -->
 <div class="product-area gray-bg pt-90 pb-65">
 	<div class="container">
 		<div class="product-top-bar section-border mb-55">
@@ -235,14 +236,14 @@ if (isset($_GET['pro'])) {
 			</div>
 		</div>
 		<div class="row">
-			<?php
-			include_once "Product.php";
-			$relate = new Product();
-			$result = $relate->Related();
-			if (!empty($result)) {
-				$relate = $result->fetch_all(MYSQLI_ASSOC);
-				foreach ($relate as $key => $value) {
-			?>
+            <?php
+            include_once "Product.php";
+            $relate = new Product();
+            $result = $relate->Related($pro->getId());
+            if (!empty($result)) {
+                $relate = $result->fetch_all(MYSQLI_ASSOC);
+                foreach ($relate as $key => $value) {
+            ?>
 					<div class="col-3">
 						<div class="product-wrapper-single">
 							<div class="product-wrapper mb-30">

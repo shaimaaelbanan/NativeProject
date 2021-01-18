@@ -92,11 +92,10 @@
                                                     <li><a href="about-us.php">about us </a></li>
                                                     <li><a href="shop.php">shop Grid</a></li>
                                                     <li><a href="shop-list.php">shop list</a></li>
-                                                    <li><a href="product-details.php">product details</a></li>
                                                     <li><a href="cart-page.php">cart page</a></li>
                                                     <li><a href="checkout.php">checkout</a></li>
                                                     <li><a href="wishlist.php">wishlist</a></li>
-                                                    <li><a href="my-account.php">my account</a></li>
+                                                    <li><a href="profile.php">my account</a></li>
                                                     <li><a href="login-register.php">login / register</a></li>
                                                     <li><a href="contact.php">contact</a></li>
                                                 </ul>

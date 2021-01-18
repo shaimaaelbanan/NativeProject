@@ -103,10 +103,10 @@ class Product extends database implements operations{
       $query = "SELECT * FROM products ORDER BY created_at DESC LIMIT 4";
       return $this->runDQL($query);
    }
-   public function Related(){
+   public function Related($id){
       $query = "SELECT *
       FROM `products`
-      WHERE `subcate_id` = (SELECT `subcate_id` FROM `products` WHERE `products`.`id` = 1)
+      WHERE `subcate_id` = (SELECT `subcate_id` FROM `products` WHERE `id` = $id ) AND `id`!=$id
       ORDER BY `price` DESC
       LIMIT 4";
       return $this->runDQL($query);
